@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 //styles
-import { Wrapper, Content } from '../HeroImage/HeroImage.styles';
+import { Wrapper, Content } from './SearchBar.styles';
 
 //image
 import searchIcon from '../../images/search-icon.svg';
 
 const SearchBar = ({ setSearchTerm }) => {
     const [state, setState] = useState('');
+    const initial = useRef(true);
+
+    useEffect(() => {
+        if (initial.current) {
+            initial.current = false;
+            return;
+        }
+    })
 
     useEffect(() => {
         const timer = setTimeout(() => {
