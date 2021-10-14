@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import RMDBLogo from '../../images/react-movie-logo.svg';
+/* import RMDBLogo from '../../images/react-movie-logo.svg'; */
 import TMDBLogo from '../../images/tmdb_logo.svg';
 import HPMovieLogo from '../../images/HPMovie.svg';
 
