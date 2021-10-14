@@ -26,7 +26,6 @@ export const useMovieFetch = movieId => {
                     actors: credits.cast,
                     directors
                 })
-                console.log('API');
                 setLoading(false);
             }
             catch (error) {
@@ -37,7 +36,6 @@ export const useMovieFetch = movieId => {
         if (sessionState) {
             setLoading(true);
             setState(sessionState);
-            console.log('Session Storage');
             setLoading(false);
         }
         else {
