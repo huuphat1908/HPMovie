@@ -20,7 +20,7 @@ import NoImage from '../images/no_image.jpg';
 const Home = () => {
     const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useHomeFetch();
 
-    /* console.log(state); */
+    console.log(process.env.REACT_APP_API_KEY);
     if (error)
         return <div>Something went wrong</div>;
     return (
