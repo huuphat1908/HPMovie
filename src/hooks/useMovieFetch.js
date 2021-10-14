@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
+
+//api
 import API from '../API';
+
+//helpers
+import { isPersistedState } from '../helpers';
 
 export const useMovieFetch = movieId => {
     const [state, setState] = useState({});
@@ -21,13 +26,29 @@ export const useMovieFetch = movieId => {
                     actors: credits.cast,
                     directors
                 })
+                console.log('API');
                 setLoading(false);
             }
             catch (error) {
                 setError(true);
             }
         }
-        fetchMovie();
+        const sessionState = isPersistedState(movieId);
+        if (sessionState) {
+            setLoading(true);
+            setState(sessionState);
+            console.log('Session Storage');
+            setLoading(false);
+        }
+        else {
+            fetchMovie();
+        }
     }, [movieId]);
+
+    //write to sessionStorage
+    useEffect(() => {
+        sessionStorage.setItem(movieId, JSON.stringify(state));
+    }, [movieId, state]);
+
     return { state, loading, error };
 } 
