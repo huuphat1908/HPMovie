@@ -20,12 +20,19 @@ export const Content = styled.div`
     color: var(--darkGrey);
 
     input {
-        width: 100%;
-        height: 30px;
-        border: 1px solid var(--darkGrey);
-        border-radius: 20px;
-        margin: 10px 0;
-        padding: 10px;
+        border: none;
+        border-bottom: 1px solid var(--lightGrey);
+        margin-bottom: 30px;
+        background: none;
+        color: var(--lightGrey);
+        height: 35px;
+        width: 300px;
+        outline: 0;
+        font-size: var(--fontSmall);
+    }
+
+    a {
+        color: #8b0000;
     }
 
     .error {

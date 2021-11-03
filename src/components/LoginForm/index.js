@@ -75,6 +75,7 @@ const LoginForm = () => {
                         name='username'
                         id='username'
                         placeholder='Username'
+                        autoComplete='off'
                         onChange={handleInput}
                     />
                     <input
@@ -83,9 +84,11 @@ const LoginForm = () => {
                         name='password'
                         id='password'
                         placeholder='Password'
+                        autoComplete='off'
                         onChange={handleInput}
                     />
                     <Button text='Log in' callback={handleSubmit} />
+                    <p>Don't have account? <a href='https://www.themoviedb.org/signup' target='_blank'>Sign up now!</a></p>
                 </Content>
             </Wrapper>
         </div>

@@ -24,6 +24,10 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+    #root {
+        background-color: var(--darkGrey);
+    }
+
     h1 {
         font-size: 2rem;
         font-weight: 600;
@@ -38,5 +42,9 @@ export const GlobalStyle = createGlobalStyle`
     p {
         font-size: 1rem;
         color: var(--white);
+    }
+
+    a {
+        text-decoration: none;
     }
 `;
