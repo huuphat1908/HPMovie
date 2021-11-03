@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 //styles
-import { Wrapper, Content } from "./Breadcrumb.styles";
+import { Wrapper, Content } from './Breadcrumb.styles';
 
 const Breadcrumb = ({ movieTitle }) => (
     <Wrapper>
@@ -12,7 +12,7 @@ const Breadcrumb = ({ movieTitle }) => (
                 <span>Home</span>
             </Link>
             <span>|</span>
-            <span>{movieTitle}</span>
+            <span>{movieTitle || 'Login'}</span>
         </Content>
     </Wrapper>
 )

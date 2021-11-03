@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Abel', sans-serif;
     }
     
+
     body {
         margin: 0;
         padding: 0;

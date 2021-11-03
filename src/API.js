@@ -10,13 +10,6 @@ import {
   SESSION_ID_URL
 } from './config';
 
-const defaultConfig = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-};
-
 const apiSettings = {
   fetchMovies: async (searchTerm, page) => {
     const endpoint = searchTerm
@@ -37,7 +30,6 @@ const apiSettings = {
   },
   // Bonus material below for login
   getRequestToken: async () => {
-    /* const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json(); */
     const reqToken = (await axios.get(REQUEST_TOKEN_URL)).data;
     return reqToken.request_token;
   },

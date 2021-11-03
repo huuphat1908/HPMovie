@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import { Wrapper } from './Button.styles';
 
 const Button = ({ text, callback }) => (
-    <Wrapper type='button' onClick={callback}>
+    <Wrapper onClick={callback}>
         {text}
     </Wrapper>
 );
 
 Button.propTypes = {
+    type: PropTypes.string,
     text: PropTypes.string,
     callback: PropTypes.func,
 }
