@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
-    #root {
+    html {
         background-color: var(--darkGrey);
     }
 

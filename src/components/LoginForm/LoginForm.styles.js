@@ -32,7 +32,7 @@ export const Content = styled.div`
     }
 
     a {
-        color: #8b0000;
+        color: #FF0000;
     }
 
     .error {

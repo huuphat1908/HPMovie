@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //api
@@ -22,7 +22,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const loginFormRef = useRef();
 
-    const handleSubmit = async () => {
+    const handleSubmit = useCallback(async () => {
         setError(false);
         try {
             const requestToken = await API.getRequestToken();
@@ -35,7 +35,8 @@ const LoginForm = () => {
         } catch {
             setError(true);
         }
-    };
+    }, [username, password, navigate, setUser]);
+    
     const handleInput = e => {
         const { name, value } = e.currentTarget;
         if (name === 'username') {
@@ -88,7 +89,7 @@ const LoginForm = () => {
                         onChange={handleInput}
                     />
                     <Button text='Log in' callback={handleSubmit} />
-                    <p>Don't have account? <a href='https://www.themoviedb.org/signup' target='_blank'>Sign up now!</a></p>
+                    <p>Don't have an account? <a href='https://www.themoviedb.org/signup' target='_blank' rel='noreferrer'>Sign up now!</a></p>
                 </Content>
             </Wrapper>
         </div>

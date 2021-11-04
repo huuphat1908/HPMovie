@@ -19,7 +19,7 @@ const App = () => (
     <UserProvider>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/:movieId' element={<Movie />} />
         <Route exact path='*' element={<NotFound />} />
