@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 //styles
 import { Wrapper } from './Button.styles';
 
-const Button = ({ text, callback, isLight }) => (
-    <Wrapper onClick={callback} isLight>
+const Button = ({ text, callback }) => (
+    <Wrapper onClick={callback}>
         {text}
     </Wrapper>
 );
 
 Button.propTypes = {
     text: PropTypes.string,
-    callback: PropTypes.func,
-    isLight: PropTypes.bool
+    callback: PropTypes.func
 }
 
 export default Button;

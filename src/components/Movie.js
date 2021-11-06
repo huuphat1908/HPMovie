@@ -21,6 +21,7 @@ import { useMovieFetch } from '../hooks/useMovieFetch';
 const Movie = () => {
     const { movieId } = useParams();
     const { state: movie, loading, error } = useMovieFetch(movieId);
+
     if (loading)
         return <Spinner />;
     if (error)
@@ -34,6 +35,7 @@ const Movie = () => {
                 budget={movie.budget}
                 revenue={movie.revenue}
             />
+            
             <Grid header='Actors'>
                 {movie.actors.map(actor => (
                     <Actor

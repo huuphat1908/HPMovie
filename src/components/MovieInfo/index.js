@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 //api
@@ -7,6 +7,7 @@ import API from '../../API';
 //components
 import Thumb from '../Thumb';
 import Rate from '../Rate';
+import Modal from '../Modal';
 
 //config
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
@@ -22,9 +23,15 @@ import { Context } from '../../context';
 
 const MovieInfo = ({ movie }) => {
     const [user] = useContext(Context);
+    const [showTrailer, setShowTrailer] = useState(false);
+
     const handleRating = async (value) => {
         const rating = await API.rateMovie(user.sessionId, movie.id, value);
         console.log(rating);
+    }
+
+    const toggleTrailer = () => {
+        setShowTrailer(!showTrailer);
     }
 
     return (
@@ -56,6 +63,12 @@ const MovieInfo = ({ movie }) => {
                             ))}
                         </div>
                     </div>
+                    <button className='watch-trailer' onClick={toggleTrailer}>
+                        Watch trailer
+                    </button>
+                    <Modal active={showTrailer} callback={toggleTrailer}>
+                        <iframe src='https://www.youtube.com/watch?v=06K5yUYPAis'></iframe>
+                    </Modal>
                     <div>
                         {user &&
                             <div>
