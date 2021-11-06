@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
-import { Wrapper, Content } from '../Modal/Modal.styles';
+import { Wrapper, Content, CloseButton } from '../Modal/Modal.styles';
 
 const Modal = ({ children, active, callback }) => {
-    if (active) {
+    useEffect(() => {
         document.body.style.overflow = 'hidden';
-    }
-    else {
-        document.body.style.overflow = 'visible';
-    }
+        return () => {
+            document.body.style.overflow = 'visible';
+        }
+    });
 
     return (
         <Wrapper active={active} onClick={callback}>
             <Content>
                 {children}
+                <CloseButton>x</CloseButton>
             </Content>
         </Wrapper>
     )

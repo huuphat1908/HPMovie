@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     position: fixed;
@@ -14,10 +14,29 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-    width: 640px;
-    height: 360px;
+    position: relative;
+    width: 720px;
+    height: 405px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    background: var(--medGrey);
+    padding: 2rem;
+
+    @media screen and (max-width: 768px) {
+        width: 80%;
+        height: 300px;
+    }
+`;
+
+export const CloseButton = styled.span`
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: var(--fontBig);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--red);
+    }
 `;

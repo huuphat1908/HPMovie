@@ -70,7 +70,7 @@ export const Text = styled.div`
         letter-spacing: 1px;
         text-transform: uppercase;
         color: #fff;
-        background: #c62828;
+        background: var(--red);
         border: 0;
         border-radius: 35px;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);;

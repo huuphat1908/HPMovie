@@ -66,9 +66,15 @@ const MovieInfo = ({ movie }) => {
                     <button className='watch-trailer' onClick={toggleTrailer}>
                         Watch trailer
                     </button>
-                    <Modal active={showTrailer} callback={toggleTrailer}>
-                        <iframe src='https://www.youtube.com/watch?v=06K5yUYPAis'></iframe>
-                    </Modal>
+                    {showTrailer &&
+                        <Modal active={showTrailer} callback={toggleTrailer}>
+                            <iframe src={`https://www.youtube.com/embed/${movie.videos.results[0].key}`}
+                                    width='94%'
+                                    height='94%'
+                                    title='trailer'
+                                    allowFullScreen />
+                        </Modal>
+                    }
                     <div>
                         {user &&
                             <div>
