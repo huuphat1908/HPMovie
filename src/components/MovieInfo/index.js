@@ -69,8 +69,8 @@ const MovieInfo = ({ movie }) => {
                     {showTrailer &&
                         <Modal active={showTrailer} callback={toggleTrailer}>
                             <iframe src={`https://www.youtube.com/embed/${movie.videos.results[0].key}`}
-                                    width='94%'
-                                    height='94%'
+                                    width='100%'
+                                    height='100%'
                                     title='trailer'
                                     allowFullScreen />
                         </Modal>

@@ -21,20 +21,19 @@ export const Content = styled.div`
     justify-content: center;
     align-items: center;
     background: var(--medGrey);
-    padding: 2rem;
-
-    @media screen and (max-width: 768px) {
-        width: 80%;
-        height: 300px;
-    }
 `;
 
 export const CloseButton = styled.span`
     position: absolute;
     top: 5px;
     right: 5px;
-    font-size: var(--fontBig);
+    display: inline-block;
+    /* width: var(--fontSuperBig);
+    height: var(--fontSuperBig); */
+    font-size: var(--fontSuperBig);
+    overflow-wrap: break-word;
     cursor: pointer;
+    overflow: hidden;
 
     &:hover {
         color: var(--red);
