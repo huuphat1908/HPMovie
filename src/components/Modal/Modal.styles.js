@@ -25,15 +25,13 @@ export const Content = styled.div`
 
 export const CloseButton = styled.span`
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: 0;
     display: inline-block;
-    /* width: var(--fontSuperBig);
-    height: var(--fontSuperBig); */
+    width: var(--fontBig);
+    height: var(-fontBig);
     font-size: var(--fontSuperBig);
-    overflow-wrap: break-word;
     cursor: pointer;
-    overflow: hidden;
 
     &:hover {
         color: var(--red);
