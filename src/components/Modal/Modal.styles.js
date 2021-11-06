@@ -29,7 +29,7 @@ export const CloseButton = styled.span`
     right: 0;
     display: inline-block;
     width: var(--fontBig);
-    height: var(-fontBig);
+    height: var(--fontBig);
     font-size: var(--fontSuperBig);
     cursor: pointer;
 
