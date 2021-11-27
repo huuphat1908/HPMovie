@@ -14,6 +14,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 
 //image
 import NoImage from '../../images/no_image.jpg';
+import PlayIcon from '../../images/play-icon.svg';
 
 //styles
 import { Wrapper, Content, Text } from './MovieInfo.styles';
@@ -24,6 +25,19 @@ import { Context } from '../../context';
 const MovieInfo = ({ movie }) => {
     const [user] = useContext(Context);
     const [showTrailer, setShowTrailer] = useState(false);
+
+    const getMovieTrailerKey = () => {
+        if (movie.videos.results[0]) {
+            let movieTrailerKey = movie.videos.results[0].key;
+            movie.videos.results.forEach(video => {
+                if (video.type === 'Trailer') {
+                    movieTrailerKey = video.key;
+                }
+            });
+            return movieTrailerKey;
+        }
+        return null;
+    }
 
     const handleRating = async (value) => {
         const rating = await API.rateMovie(user.sessionId, movie.id, value);
@@ -63,16 +77,21 @@ const MovieInfo = ({ movie }) => {
                             ))}
                         </div>
                     </div>
-                    <button className='watch-trailer' onClick={toggleTrailer}>
-                        Watch trailer
-                    </button>
+                    {movie.videos.results[0] ? (
+                            <button className='btn-watch-trailer' onClick={toggleTrailer}>
+                                Watch trailer
+                                <img src={PlayIcon} alt='play-icon' />
+                            </button>
+                        ) : null
+                    }
                     {showTrailer &&
                         <Modal active={showTrailer} callback={toggleTrailer}>
-                            <iframe src={`https://www.youtube.com/embed/${movie.videos.results[0].key}`}
+                            <iframe src={`https://www.youtube.com/embed/${getMovieTrailerKey()}`}
                                     width='100%'
                                     height='100%'
                                     title='trailer'
-                                    allowFullScreen />
+                                    allowFullScreen
+                                    frameBorder='0'/>
                         </Modal>
                     }
                     <div>

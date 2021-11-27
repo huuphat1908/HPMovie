@@ -62,8 +62,10 @@ export const Text = styled.div`
         margin: 0 0 0 40px;
     }
 
-    .watch-trailer {
-        display: inline-block;
+    .btn-watch-trailer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 0.65rem 1.5rem;
         font-size: var(--fontSmall);
         font-weight: 600;
@@ -75,9 +77,20 @@ export const Text = styled.div`
         border-radius: 35px;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);;
         margin: 1rem 0;
+
+        img {
+            width: 19px;
+            height: 19px;
+            display: block;
+            margin-left: 5px;
+        }
+
+        @media screen and (max-width: 768px) {
+            padding: 0.5rem 1.25rem;
+        }
     }
 
-    .watch-trailer:hover {
+    .btn-watch-trailer:hover {
         color: #fff;
         box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
     }
