@@ -19,10 +19,12 @@ export const useMovieFetch = movieId => {
 
                 const movie = await API.fetchMovie(movieId);
                 const credits = await API.fetchCredits(movieId);
+                const similarMovie = await API.fetchSimilarMovie(movieId);
                 //get directors only
                 const directors = credits.crew.filter(member => member.job === 'Director');
                 setState({
                     ...movie,
+                    similarMovie: similarMovie.results,
                     actors: credits.cast,
                     directors
                 })

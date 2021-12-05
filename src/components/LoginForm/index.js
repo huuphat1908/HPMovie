@@ -69,7 +69,7 @@ const LoginForm = () => {
         <div ref={loginFormRef}>
             <Wrapper loginFormOffsetTop={offsetTop}>
                 <Content>
-                    {error && <div className='error'>There was an error!</div>}
+                    {error && <div className='error'>Wrong username or password!</div>}
                     <input
                         type='text'
                         value={username}

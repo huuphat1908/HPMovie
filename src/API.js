@@ -25,6 +25,12 @@ const apiSettings = {
     return movie;
   },
 
+  fetchSimilarMovie: async movieId => {
+    const endpoint = `${API_URL}movie/${movieId}/similar?api_key=${API_KEY}`;
+    const movie = (await axios.get(endpoint)).data;
+    return movie;
+  },
+
   fetchCredits: async movieId => {
     const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
     const credits = (await axios.get(creditsEndpoint)).data;
