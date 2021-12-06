@@ -14,7 +14,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-    li {
-        margin-right: 14px;
+    li:first-of-type{
+        padding-right: 7px;
+    }
+    li:not(:first-of-type) {
+        padding: 0 7px;
     }
 `;

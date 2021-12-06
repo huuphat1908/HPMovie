@@ -22,7 +22,7 @@ const Slider = ({ title, children }) => {
           items: 2
         },
         mobile: {
-          breakpoint: { max: 464, min: 0 },
+          breakpoint: { max: 768, min: 0 },
           items: 1,
           slidesToSlide: 1
         }
@@ -31,7 +31,7 @@ const Slider = ({ title, children }) => {
         <Wrapper>
             <Content>
                 <h1>{title}</h1>
-                <Carousel responsive={responsive}>
+                <Carousel responsive={responsive} partialVisible={true}>
                     {children}
                 </Carousel>
             </Content>
