@@ -3,6 +3,9 @@ import axios from 'axios';
 import {
   SEARCH_BASE_URL,
   POPULAR_BASE_URL,
+  TOPRATED_BASE_URL,
+  UPCOMING_BASE_URL,
+  TVSHOW_BASE_URL,
   API_URL,
   API_KEY,
   REQUEST_TOKEN_URL,
@@ -15,6 +18,30 @@ const apiSettings = {
     const endpoint = searchTerm
       ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
       : `${POPULAR_BASE_URL}&page=${page}`;
+    const movies = (await axios.get(endpoint)).data;
+    return movies;
+  },
+
+  fetchTopRatedMovies: async (searchTerm, page) => {
+    const endpoint = searchTerm
+      ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
+      : `${TOPRATED_BASE_URL}&page=${page}`;
+    const movies = (await axios.get(endpoint)).data;
+    return movies;
+  },
+
+  fetchUpcomingMovies: async (searchTerm, page) => {
+    const endpoint = searchTerm
+      ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
+      : `${UPCOMING_BASE_URL}&page=${page}`;
+    const movies = (await axios.get(endpoint)).data;
+    return movies;
+  },
+
+  fetchTVShow: async (searchTerm, page) => {
+    const endpoint = searchTerm
+      ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
+      : `${TVSHOW_BASE_URL}&page=${page}`;
     const movies = (await axios.get(endpoint)).data;
     return movies;
   },
