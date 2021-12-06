@@ -1,58 +1,76 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //config
-import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 
-//components
-import HeroImage from './HeroImage';
+// component
 import Grid from './Grid';
-import Thumb from './Thumb';
 import Spinner from './Spinner';
-import SearchBar from './SearchBar';
-import Button from './Button';
+import Breadcrumb from './Breadcrumb';
+import MovieInfo from './MovieInfo';
+import TVShowInfoBar from './TVShowInfoBar';
+import Actor from './Actor';
+import Slider from './Slider';
+import TVShowThumb from './TVShowThumb';
+
+// image
+import NoImage from '../images/no_image.jpg'
 
 //hook
-import { useTVShowFetch } from '../hooks/useTVShowFetch'
+import { useTVShowFetch } from '../hooks/useTVShowFetch';
 
-//image
-import NoImage from '../images/no_image.jpg';
+const Movie = () => {
+    const { tvShowId } = useParams();
+    const { state: movie, loading, error } = useTVShowFetch(tvShowId);
 
-const TopRated = () => {
-    const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useTVShowFetch();
-
+    if (loading)
+        return <Spinner />;
     if (error)
         return <div>Something went wrong</div>;
     return (
         <>
-            {!searchTerm && state.results[0] ? (
-                <HeroImage
-                    image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
-                    title={state.results[0].original_title}
-                    text={state.results[0].overview}
-                />) : null
-            }
-            <SearchBar setSearchTerm={setSearchTerm} />
-            <Grid header={searchTerm ? 'Search Result' : 'TV Show'}>
-                {state.results.map(movie => (
-                    <Thumb
-                        key={movie.id}
-                        clickable
-                        image={
-                            movie.poster_path
-                                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+            <Breadcrumb movieTitle={movie.original_title} />
+            <MovieInfo movie={movie} />
+            <TVShowInfoBar
+                episodeTime={movie.episode_run_time}
+                numberOfEpisode={movie.number_of_episodes}
+                numberOfSeason={movie.number_of_seasons}
+            />
+            <Grid header='Actors'>
+                {movie.actors.map(actor => (
+                    <Actor
+                        key={actor.credit_id}
+                        name={actor.name}
+                        character={actor.character}
+                        imageUrl={
+                            actor.profile_path
+                                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
                                 : NoImage
                         }
-                        movieId={movie.id} />
+                    />
                 ))}
             </Grid>
-            {loading && <Spinner />}
-            {state.page < state.total_pages && !loading && (
-                <Button text='Load More' callback={() => {
-                    setIsLoadingMore(true);
-                }} />
-            )}
+            {
+                movie.similarMovie ?
+                    <Slider title='Similar Movie'>
+                        {movie.similarMovie.map(similarMovie => (
+                            <Link to={`/${similarMovie.id}`}>
+                                <TVShowThumb
+                                    key={similarMovie.id}
+                                    image={
+                                        similarMovie.poster_path
+                                            ? IMAGE_BASE_URL + POSTER_SIZE + similarMovie.poster_path
+                                            : NoImage
+                                    }
+                                    movieId={similarMovie.id} />
+                            </Link>
+                        ))}
+                    </Slider> : null
+            }
         </>
     )
-};
+}
 
-export default TopRated;
+export default Movie;

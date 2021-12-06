@@ -6,63 +6,49 @@ import API from '../API';
 //helpers
 import { isPersistedState } from '../helpers';
 
-const initialState = {
-    page: 0,
-    results: [],
-    total_pages: 0,
-    total_results: 0
-}
-
-export const useTVShowFetch = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [state, setState] = useState(initialState);
-    const [loading, setLoading] = useState(false);
+export const useTVShowFetch = tvShowId => {
+    const [state, setState] = useState({});
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-    const fetchMovies = async (page, searchTerm = '') => {
-        try {
-            setError(false);
-            setLoading(true);
-            const movies = await API.fetchTVShow(searchTerm, page);
-            setState(prev => ({
-               ...movies,
-               results:
-               page > 1 ? [...prev.results, ...movies.results] : [...movies.results]
-            }))
-        } catch (error) {
-            setError(true);
-        }
-        setLoading(false);
-    }
-
-    //search and initial
     useEffect(() => {
-        if (!searchTerm) {
-            const sessionState = isPersistedState('tvShowState');
-            if (sessionState) {
-                setState(sessionState);
-                return;
+        const fetchTVShow = async () => {
+            try {
+                setLoading(true);
+                setError(false);
+
+                const movie = await API.fetchTVShow(tvShowId);
+                const credits = await API.fetchTVShowCredits(tvShowId);
+                const similarMovie = await API.fetchSimilarTVShow(tvShowId);
+                //get directors only
+                const directors = credits.crew.filter(member => member.job === 'Director');
+                setState({
+                    ...movie,
+                    similarMovie: similarMovie.results,
+                    actors: credits.cast,
+                    directors
+                })
+                setLoading(false);
+            }
+            catch (error) {
+                setError(true);
             }
         }
-        setState(initialState);
-        fetchMovies(1, searchTerm);
-    }, [searchTerm]);
-
-    //load more
-    useEffect(() => {
-        if (!isLoadingMore)
-            return;
-        fetchMovies(state.page + 1, searchTerm);
-        setIsLoadingMore(false);
-    }, [isLoadingMore, searchTerm, state.page]);
+        const sessionState = isPersistedState(tvShowId);
+        if (sessionState) {
+            setLoading(true);
+            setState(sessionState);
+            setLoading(false);
+        }
+        else {
+            fetchTVShow();
+        }
+    }, [tvShowId]);
 
     //write to sessionStorage
     useEffect(() => {
-        if (!searchTerm) {
-            sessionStorage.setItem('tvShowState', JSON.stringify(state));
-        }
-    }, [searchTerm, state]);
+        sessionStorage.setItem(`tvShow${tvShowId}`, JSON.stringify(state));
+    }, [tvShowId, state]);
 
-    return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
-}
+    return { state, loading, error };
+} 

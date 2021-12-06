@@ -13,13 +13,13 @@ import MovieInfo from './MovieInfo';
 import MovieInfoBar from './MovieInfoBar';
 import Actor from './Actor';
 import Slider from './Slider';
+import MovieThumb from './MovieThumb';
 
 // image
 import NoImage from '../images/no_image.jpg'
 
 //hook
 import { useMovieFetch } from '../hooks/useMovieFetch';
-import Thumb from './Thumb';
 
 const Movie = () => {
     const { movieId } = useParams();
@@ -38,7 +38,6 @@ const Movie = () => {
                 budget={movie.budget}
                 revenue={movie.revenue}
             />
-
             <Grid header='Actors'>
                 {movie.actors.map(actor => (
                     <Actor
@@ -53,20 +52,23 @@ const Movie = () => {
                     />
                 ))}
             </Grid>
-            <Slider title='Similar Movie'>
-                {movie.similarMovie.map(similarMovie => (
-                    <Link to={`/${similarMovie.id}`}>
-                        <Thumb
-                            key={similarMovie.id}
-                            image={
-                                similarMovie.poster_path
-                                    ? IMAGE_BASE_URL + POSTER_SIZE + similarMovie.poster_path
-                                    : NoImage
-                            }
-                            movieId={similarMovie.id} />
-                    </Link>
-                ))}
-            </Slider>
+            {
+                movie.similarMovie ?
+                    <Slider title='Similar Movie'>
+                        {movie.similarMovie.map(similarMovie => (
+                            <Link to={`/${similarMovie.id}`}>
+                                <MovieThumb
+                                    key={similarMovie.id}
+                                    image={
+                                        similarMovie.poster_path
+                                            ? IMAGE_BASE_URL + POSTER_SIZE + similarMovie.poster_path
+                                            : NoImage
+                                    }
+                                    movieId={similarMovie.id} />
+                            </Link>
+                        ))}
+                    </Slider> : null
+            }
         </>
     )
 }

@@ -6,19 +6,19 @@ import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 //components
 import HeroImage from './HeroImage';
 import Grid from './Grid';
-import MovieThumb from './MovieThumb';
+import TVShowThumb from './TVShowThumb';
 import Spinner from './Spinner';
 import SearchBar from './SearchBar';
 import Button from './Button';
 
 //hook
-import { useHomeFetch } from '../hooks/useHomeFetch'
+import { useTVShowsFetch } from '../hooks/useTVShowsFetch'
 
 //image
 import NoImage from '../images/no_image.jpg';
 
-const Home = () => {
-    const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useHomeFetch();
+const TopRated = () => {
+    const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } = useTVShowsFetch();
 
     if (error)
         return <div>Something went wrong</div>;
@@ -32,9 +32,9 @@ const Home = () => {
                 />) : null
             }
             <SearchBar setSearchTerm={setSearchTerm} />
-            <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}>
+            <Grid header={searchTerm ? 'Search Result' : 'TV Shows'}>
                 {state.results.map(movie => (
-                    <MovieThumb
+                    <TVShowThumb
                         key={movie.id}
                         clickable
                         image={
@@ -42,7 +42,7 @@ const Home = () => {
                                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
                                 : NoImage
                         }
-                        movieId={movie.id} />
+                        tvShowId={movie.id}/>
                 ))}
             </Grid>
             {loading && <Spinner />}
@@ -55,4 +55,4 @@ const Home = () => {
     )
 };
 
-export default Home;
+export default TopRated;

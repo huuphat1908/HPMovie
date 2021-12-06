@@ -4,7 +4,6 @@ import {
   SEARCH_BASE_URL,
   POPULAR_BASE_URL,
   TOPRATED_BASE_URL,
-  UPCOMING_BASE_URL,
   TVSHOW_BASE_URL,
   API_URL,
   API_KEY,
@@ -30,20 +29,18 @@ const apiSettings = {
     return movies;
   },
 
-  fetchUpcomingMovies: async (searchTerm, page) => {
-    const endpoint = searchTerm
-      ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
-      : `${UPCOMING_BASE_URL}&page=${page}`;
-    const movies = (await axios.get(endpoint)).data;
-    return movies;
-  },
-
-  fetchTVShow: async (searchTerm, page) => {
+  fetchTVShows: async (searchTerm, page) => {
     const endpoint = searchTerm
       ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
       : `${TVSHOW_BASE_URL}&page=${page}`;
     const movies = (await axios.get(endpoint)).data;
     return movies;
+  },
+
+  fetchTVShow: async tvShowId => {
+    const endpoint = `${API_URL}tv/${tvShowId}?api_key=${API_KEY}&append_to_response=videos`;
+    const movie = (await axios.get(endpoint)).data;
+    return movie;
   },
 
   fetchMovie: async movieId => {
@@ -58,8 +55,20 @@ const apiSettings = {
     return movie;
   },
 
+  fetchSimilarTVShow: async tvShowId => {
+    const endpoint = `${API_URL}tv/${tvShowId}/similar?api_key=${API_KEY}`;
+    const movie = (await axios.get(endpoint)).data;
+    return movie;
+  },
+
   fetchCredits: async movieId => {
     const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+    const credits = (await axios.get(creditsEndpoint)).data;
+    return credits;
+  },
+
+  fetchTVShowCredits: async tvShowId => {
+    const creditsEndpoint = `${API_URL}tv/${tvShowId}/credits?api_key=${API_KEY}`;
     const credits = (await axios.get(creditsEndpoint)).data;
     return credits;
   },
@@ -89,6 +98,14 @@ const apiSettings = {
 
   rateMovie: async (sessionId, movieId, value) => {
     const endpoint = `${API_URL}movie/${movieId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
+    const rating = (await axios.post(endpoint, {
+      value
+    })).data;
+    return rating;
+  },
+
+  rateTVShow: async (sessionId, tvShowId, value) => {
+    const endpoint = `${API_URL}tv/${tvShowId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
     const rating = (await axios.post(endpoint, {
       value
     })).data;

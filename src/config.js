@@ -4,7 +4,6 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`;
 const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`;
 const TOPRATED_BASE_URL = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US`;
-const UPCOMING_BASE_URL = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US`;
 const TVSHOW_BASE_URL = `${API_URL}tv/popular?api_key=${API_KEY}&language=en-US`;
 
 // For login and voting
@@ -22,7 +21,6 @@ export {
   SEARCH_BASE_URL,
   POPULAR_BASE_URL,
   TOPRATED_BASE_URL,
-  UPCOMING_BASE_URL,
   TVSHOW_BASE_URL,
   API_URL,
   API_KEY,

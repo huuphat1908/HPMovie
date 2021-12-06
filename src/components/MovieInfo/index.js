@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import API from '../../API';
 
 //components
-import Thumb from '../Thumb';
+import MovieThumb from '../MovieThumb';
 import Rate from '../Rate';
 import Modal from '../Modal';
 
@@ -51,7 +51,7 @@ const MovieInfo = ({ movie }) => {
     return (
         <Wrapper backdrop={movie.backdrop_path}>
             <Content>
-                <Thumb
+                <MovieThumb
                     image={
                         movie.poster_path
                             ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
@@ -78,20 +78,20 @@ const MovieInfo = ({ movie }) => {
                         </div>
                     </div>
                     {movie.videos.results[0] ? (
-                            <button className='btn-watch-trailer' onClick={toggleTrailer}>
-                                Watch trailer
-                                <img src={PlayIcon} alt='play-icon' />
-                            </button>
-                        ) : null
+                        <button className='btn-watch-trailer' onClick={toggleTrailer}>
+                            Watch trailer
+                            <img src={PlayIcon} alt='play-icon' />
+                        </button>
+                    ) : null
                     }
                     {showTrailer &&
                         <Modal active={showTrailer} callback={toggleTrailer}>
                             <iframe src={`https://www.youtube.com/embed/${getMovieTrailerKey()}`}
-                                    width='100%'
-                                    height='100%'
-                                    title='trailer'
-                                    allowFullScreen
-                                    frameBorder='0'/>
+                                width='100%'
+                                height='100%'
+                                title='trailer'
+                                allowFullScreen
+                                frameBorder='0' />
                         </Modal>
                     }
                     <div>
