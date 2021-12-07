@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Wrapper } from './Rate.styles';
 
 const Rate = ({ callback }) => {
-    const [value, setValue] = useState(5);
+    const [value, setValue] = useState(1);
 
     return (
         <Wrapper>

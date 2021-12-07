@@ -41,7 +41,13 @@ const MovieInfo = ({ movie }) => {
 
     const handleRating = async (value) => {
         const rating = await API.rateMovie(user.sessionId, movie.id, value);
-        console.log(rating);
+        const statusCode = rating.status_code;
+        if (statusCode === 12) {
+            alert('Update rating successfully');
+        }
+        if (statusCode === 1) {
+            alert('Rating successfully');
+        }
     }
 
     const toggleTrailer = () => {
