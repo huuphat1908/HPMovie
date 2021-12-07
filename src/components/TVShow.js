@@ -30,7 +30,7 @@ const Movie = () => {
         return <div>Something went wrong</div>;
     return (
         <>
-            <Breadcrumb movieTitle={movie.original_title} />
+            <Breadcrumb movieTitle={movie.original_name} />
             <TVShowInfo movie={movie} />
             <TVShowInfoBar
                 episodeTime={movie.episode_run_time}

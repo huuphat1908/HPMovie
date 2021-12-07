@@ -41,9 +41,11 @@ export const HamburgerMenuImg = styled.img`
     }
 `;
 
-export const NavBar = styled.ul`
-    display: flex;
-    align-items: center;
+export const NavBar = styled.nav`
+    ul {
+        display: flex;
+        align-items: center;
+    }
     padding-left: 0;
 
     li {
@@ -58,7 +60,7 @@ export const NavBar = styled.ul`
         color: var(--red);
     }
 
-    li.active {
+    a.active {
         color: var(--red);
     }
 
@@ -67,7 +69,7 @@ export const NavBar = styled.ul`
     }
 `;
 
-export const MobileNavBar = styled.ul`
+export const MobileNavBar = styled.nav`
     display: none;
     flex-direction: column;
     align-items: center;
@@ -94,7 +96,7 @@ export const MobileNavBar = styled.ul`
         color: var(--red);
     }
 
-    li.active {
+    a.active {
         color: var(--red);
     }
 

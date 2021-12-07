@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 /* import RMDBLogo from '../../images/react-movie-logo.svg'; */
 import TMDBLogo from '../../images/tmdb_logo.svg';
@@ -19,11 +19,11 @@ const Header = () => {
         if (showMobileNavBar) {
             document.body.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = 'visible'; 
+            document.body.style.overflow = 'visible';
         }
     }, [showMobileNavBar]);
 
-    const handleMobileNavBar = () => {
+    const openMobileNavBar = () => {
         setShowMobileNavBar(true);
     }
 
@@ -34,61 +34,65 @@ const Header = () => {
     return (
         <Wrapper>
             <Content>
-                <HamburgerMenuImg src={HamburgerMenu} alt='hambuger menu' onClick={handleMobileNavBar} />
+                <HamburgerMenuImg src={HamburgerMenu} alt='hambuger menu' onClick={openMobileNavBar} />
                 <NavBar>
-                    {user ? (
-                        <li>{user.username}</li>
-                    ) : (
+                    <ul>
+                        {user ? (
+                            <li>{user.username}</li>
+                        ) : (
+                            <li>
+                                <NavLink to='/login'>
+                                    Log in
+                                </NavLink>
+                            </li>
+                        )
+                        }
                         <li>
-                            <Link to='/login'>
-                                Log in
-                            </Link>
+                            <NavLink end to='/'>
+                                Home
+                            </NavLink>
                         </li>
-                    )
-                    }
-                    <li className='active'>
-                        <Link to='/'>
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/top-rated'>
-                            Top Rated
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/tv-show'>
-                            TV Show
-                        </Link>
-                    </li>
+                        <li>
+                            <NavLink to='/top-rated'>
+                                Top Rated
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/tv-show'>
+                                TV Show
+                            </NavLink>
+                        </li>
+                    </ul>
                 </NavBar>
                 <MobileNavBar isShow={showMobileNavBar}>
                     <span onClick={closeMobileNavBar}>x</span>
-                    {user ? (
-                        <li>{user.username}</li>
-                    ) : (
-                        <li>
-                            <Link to='/login'>
-                                Log in
-                            </Link>
+                    <ul>
+                        {user ? (
+                            <li>{user.username}</li>
+                        ) : (
+                            <li>
+                                <NavLink to='/login'>
+                                    Log in
+                                </NavLink>
+                            </li>
+                        )
+                        }
+                        <li className='active'>
+                            <NavLink to='/'>
+                                Home
+                            </NavLink>
                         </li>
-                    )
-                    }
-                    <li className='active'>
-                        <Link to='/'>
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/top-rated'>
-                            Top Rated
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to='/tv-show'>
-                            TV Show
-                        </Link>
-                    </li>
+                        <li>
+                            <NavLink to='/top-rated'>
+                                Top Rated
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/tv-show'>
+                                TV Show
+                            </NavLink>
+                        </li>
+                    </ul>
                 </MobileNavBar>
                 <Link to='/'>
                     <LogoImg src={HPMovieLogo} alt='rmdb-logo' />

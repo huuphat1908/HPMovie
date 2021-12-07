@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom';
 //styles
 import { Wrapper, Content } from './Breadcrumb.styles';
 
-const Breadcrumb = ({ movieTitle }) => (
-    <Wrapper>
-        <Content>
-            <Link to='/'>
-                <span>Home</span>
-            </Link>
-            <span>|</span>
-            <span>{movieTitle || 'Login'}</span>
-        </Content>
-    </Wrapper>
-)
+const Breadcrumb = ({ movieTitle }) => {
+    return (
+        <Wrapper>
+            <Content>
+                <Link to='/'>
+                    <span>Home</span>
+                </Link>
+                <span>|</span>
+                <span>{movieTitle || 'Login'}</span>
+            </Content>
+        </Wrapper>
+    )
+}
 
 Breadcrumb.propTypes = {
     movieTitle: PropTypes.string,
