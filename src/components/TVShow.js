@@ -54,9 +54,8 @@ const Movie = () => {
             </Grid>
             {
                 movie.similarMovie ?
-                    <Slider title='Similar Movie'>
+                    <Slider title='Similar TV Show'>
                         {movie.similarMovie.map(similarMovie => (
-                            <Link to={`/${similarMovie.id}`}>
                                 <TVShowThumb
                                     key={similarMovie.id}
                                     image={
@@ -64,8 +63,8 @@ const Movie = () => {
                                             ? IMAGE_BASE_URL + POSTER_SIZE + similarMovie.poster_path
                                             : NoImage
                                     }
-                                    movieId={similarMovie.id} />
-                            </Link>
+                                    clickable
+                                    tvShowId={similarMovie.id} />
                         ))}
                     </Slider> : null
             }

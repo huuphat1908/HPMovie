@@ -56,16 +56,15 @@ const Movie = () => {
                 movie.similarMovie ?
                     <Slider title='Similar Movie'>
                         {movie.similarMovie.map(similarMovie => (
-                            <Link to={`/${similarMovie.id}`}>
-                                <MovieThumb
-                                    key={similarMovie.id}
-                                    image={
-                                        similarMovie.poster_path
-                                            ? IMAGE_BASE_URL + POSTER_SIZE + similarMovie.poster_path
-                                            : NoImage
-                                    }
-                                    movieId={similarMovie.id} />
-                            </Link>
+                            <MovieThumb
+                                key={similarMovie.id}
+                                image={
+                                    similarMovie.poster_path
+                                        ? IMAGE_BASE_URL + POSTER_SIZE + similarMovie.poster_path
+                                        : NoImage
+                                }
+                                clickable
+                                movieId={similarMovie.id} />
                         ))}
                     </Slider> : null
             }

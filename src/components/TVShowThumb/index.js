@@ -7,7 +7,7 @@ import { Image } from './TVShowThumb.styles';
 
 const TVShowThumb = ({ image, tvShowId, clickable }) => (
     <div>
-        {clickable && tvShowId ? 
+        {clickable ? 
             <Link to={`/tv-show/${tvShowId}`}>
                 <Image src={image} alt='movie-thumb'/>
             </Link>

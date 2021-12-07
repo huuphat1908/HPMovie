@@ -7,7 +7,7 @@ import { Image } from './MovieThumb.styles';
 
 const MovieThumb = ({ image, movieId, clickable }) => (
     <div>
-        {clickable && movieId ? 
+        {clickable ? 
             <Link to={`/movie/${movieId}`}>
                 <Image src={image} alt='movie-thumb'/>
             </Link>
