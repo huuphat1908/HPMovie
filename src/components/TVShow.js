@@ -9,7 +9,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 import Grid from './Grid';
 import Spinner from './Spinner';
 import Breadcrumb from './Breadcrumb';
-import MovieInfo from './MovieInfo';
+import TVShowInfo from './TVShowInfo';
 import TVShowInfoBar from './TVShowInfoBar';
 import Actor from './Actor';
 import Slider from './Slider';
@@ -32,7 +32,7 @@ const Movie = () => {
     return (
         <>
             <Breadcrumb movieTitle={movie.original_title} />
-            <MovieInfo movie={movie} />
+            <TVShowInfo movie={movie} />
             <TVShowInfoBar
                 episodeTime={movie.episode_run_time}
                 numberOfEpisode={movie.number_of_episodes}
