@@ -79,7 +79,7 @@ export const MobileNavBar = styled.ul`
     left: 0;
     padding: 0;
     margin: 0;
-    background-color: rgba(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 100;
 
     li {
@@ -98,8 +98,15 @@ export const MobileNavBar = styled.ul`
         color: var(--red);
     }
 
+    span {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 4rem;
+    }
+
     @media screen and (max-width: 500px) {
-        display:${props => props.isShow ? 'flex' : 'none'};
+        display: ${props => props.isShow ? 'flex' : 'none'};
     }
 `;
 

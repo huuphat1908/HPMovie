@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 /* import RMDBLogo from '../../images/react-movie-logo.svg'; */
@@ -15,8 +15,20 @@ const Header = () => {
     const [user] = useContext(Context);
     const [showMobileNavBar, setShowMobileNavBar] = useState(false);
 
+    useEffect(() => {
+        if (showMobileNavBar) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'visible'; 
+        }
+    }, [showMobileNavBar]);
+
     const handleMobileNavBar = () => {
         setShowMobileNavBar(true);
+    }
+
+    const closeMobileNavBar = () => {
+        setShowMobileNavBar(false);
     }
 
     return (
@@ -51,6 +63,7 @@ const Header = () => {
                     </li>
                 </NavBar>
                 <MobileNavBar isShow={showMobileNavBar}>
+                    <span onClick={closeMobileNavBar}>x</span>
                     {user ? (
                         <li>{user.username}</li>
                     ) : (
