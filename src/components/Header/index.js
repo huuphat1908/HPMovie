@@ -77,8 +77,8 @@ const Header = () => {
                             </li>
                         )
                         }
-                        <li className='active'>
-                            <NavLink to='/'>
+                        <li>
+                            <NavLink end to='/'>
                                 Home
                             </NavLink>
                         </li>

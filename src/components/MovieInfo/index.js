@@ -94,14 +94,7 @@ const MovieInfo = ({ movie }) => {
                                 frameBorder='0' />
                         </Modal>
                     }
-                    <div>
-                        {user &&
-                            <div>
-                                <p>Rate Movie</p>
-                                <Rate callback={handleRating} />
-                            </div>
-                        }
-                    </div>
+                    {user && <Rate callback={handleRating} />}
                 </Text>
             </Content>
         </Wrapper>
