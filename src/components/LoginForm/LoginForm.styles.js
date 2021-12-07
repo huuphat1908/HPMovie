@@ -37,5 +37,8 @@ export const Content = styled.div`
 
     .error {
         color: red;
+        font-weight: bold;
+        font-size: var(--fontMed);
+        padding-bottom: 40px;
     }
 `;

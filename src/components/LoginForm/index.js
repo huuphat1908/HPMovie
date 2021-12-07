@@ -47,6 +47,10 @@ const LoginForm = () => {
         }
     };
 
+    const handleError = () => {
+        setError(false);
+    }
+
     useEffect(() => {
         const pressEnterListener = e => {
             if (e.code === 'Enter' || e.code === 'NumpadEnter') {
@@ -78,6 +82,7 @@ const LoginForm = () => {
                         placeholder='Username'
                         autoComplete='off'
                         onChange={handleInput}
+                        onFocus={handleError}
                     />
                     <input
                         type='password'
@@ -87,6 +92,7 @@ const LoginForm = () => {
                         placeholder='Password'
                         autoComplete='off'
                         onChange={handleInput}
+                        onFocus={handleError}
                     />
                     <Button text='Log in' callback={handleSubmit} />
                     <p>Don't have an account? <a href='https://www.themoviedb.org/signup' target='_blank' rel='noreferrer'>Sign up now!</a></p>
